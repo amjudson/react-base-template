@@ -1,39 +1,33 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-// import '../../css/styles.less.css'
-// import '../../css/style.css'
 
 class Navigation extends PureComponent {
   render() {
     return (
       <div className='sidebar'>
-        <nav className='sidebar-nav'>
+        <nav className='scrollbar-container sidebar-nav ps ps-container ps--active-y'>
           <ul className='nav'>
-            <li className='nav-title'>Martial Art Menu</li>
+            <li className='nav-title'>Base React Template</li>
             <li className='nav-item'>
-              <Link to='/' className='nav-link'><i className='nav-icon fas fa-home'></i><span>Home</span></Link>
+              <Link to='/' className='nav-link'>
+                <i className='nav-icon fas fa-home' />
+                <span>Home</span>
+              </Link>
             </li>
             <li className='nav-item'>
-              <Link to='/student' className='nav-link'><i className='nav-icon fas fa-user'></i><span>Student</span></Link>
+              <Link to='/about' className='nav-link'>
+                <i className='nav-icon fas fa-question' />
+                <span>About</span>
+              </Link>
             </li>
-            <li className='nav-item'>
-              <Link to='/academy' className='nav-link'><i className='nav-icon fas fa-question'></i><span>Academy</span></Link>
-            </li>
-            <li className='nav-item'>
-              <Link to='/about' className='nav-link'><i className='nav-icon fas fa-question'></i><span>About</span></Link>
-            </li>
-            <li className='nav-item'>
-              <Link to='/about' className='nav-link'><i className='nav-icon fas fa-question'></i><span>To come Two</span></Link>
-            </li>
-            <li className='nav-item'>
-              <Link to='/about' className='nav-link'><i className='nav-icon fas fa-question'></i><span>To come Three</span></Link>
-            </li>
-            <li className='nav-item'>
-              <Link to='/about' className='nav-link'><i className='nav-icon fas fa-question'></i><span>To come Four</span></Link>
+            <li className='nav-item mt-auto'>
+              <Link className='nav-link nav-link-danger' to='/credits'>
+                <i className='nav-icon cui-layers' /> Credits
+              </Link>
             </li>
           </ul>
         </nav>
-    </div>
+      </div>
     );
   }
 }

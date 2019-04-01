@@ -10,18 +10,21 @@ const GLOBALS = {
 
 module.exports = {
   mode: 'development',
-  entry: {
-    app: './src/index.js'
-  },
-  devtool: 'inline-source-map',
+  entry: [
+    'eventsource-polyfill',
+    'webpack-hot-middleware/client?reload=true',
+    path.join(__dirname, 'src', 'index.js') // primary JS entry point
+  ],
+  devtool: 'source-map',
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'src'),
     historyApiFallback: true,
     hot: true,
     port: 3050
   },
   output: {
     filename: 'bundle.js',
+    publicPath: '/',
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
@@ -32,6 +35,11 @@ module.exports = {
       template: 'src/index.html'
     })
   ],
+  resolve: {
+    alias: {
+      localcss: path.resolve(__dirname, 'src/css/')
+    }
+  },
   module: {
     rules: [
       {
@@ -45,6 +53,23 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(scss)$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' }
+        ]
+      },
+      {
+        test: /\.less$/,
+        exclude: /(node_modules)/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'less-loader' }
+        ]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
